@@ -3,7 +3,7 @@
 **Module:** 5COSC022W — Client-Server Architectures  
 **Coursework:** Smart Campus REST API using JAX-RS
 **Name:** Sandun Arjuna Gunawardana
-**Srudent ID:** 20240627 / w2152954
+**Student ID:** 20240627 / w2152954
 
 ---
 
