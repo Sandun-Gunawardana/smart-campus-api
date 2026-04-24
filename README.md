@@ -1,9 +1,9 @@
 # Smart Campus Sensor & Room Management API
 
+**Student:** Sandun Arjuna Gunawardana  
+**Student ID:** 20240627 / w2152954  
 **Module:** 5COSC022W — Client-Server Architectures  
 **Coursework:** Smart Campus REST API using JAX-RS
-**Name:** Sandun Arjuna Gunawardana
-**Student ID:** 20240627 / w2152954
 
 ---
 
@@ -22,7 +22,7 @@ The API follows a resource-oriented design:
 
 The implementation uses JSON request and response bodies, meaningful HTTP status codes (201, 400, 403, 404, 409, 422, 500), custom exception mappers for consistent error responses, and a JAX-RS logging filter for request and response observability.
 
-**Base URL:** `http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1`
+**Base URL:** `http://localhost:8080/api/v1`
 
 ---
 
@@ -36,7 +36,7 @@ The implementation uses JSON request and response bodies, meaningful HTTP status
 4. Ensure Tomcat 9 is configured under `Tools > Servers`.
 5. Right-click the project and select `Clean and Build`.
 6. Right-click the project and select `Run`.
-7. Open `http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1` in a browser or Postman.
+7. Open `http://localhost:8080/api/v1` in a browser or Postman.
 
 ### Using Maven and Tomcat manually
 
@@ -44,7 +44,7 @@ The implementation uses JSON request and response bodies, meaningful HTTP status
 2. Run `mvn clean package` in the project root.
 3. Copy `target/Coursework-1.0-SNAPSHOT.war` into the Tomcat `webapps` folder.
 4. Start Tomcat.
-5. Open `http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1`.
+5. Open `http://localhost:8080/api/v1`.
 
 ---
 
@@ -52,40 +52,40 @@ The implementation uses JSON request and response bodies, meaningful HTTP status
 
 ```bash
 # 1. Discovery endpoint
-curl -i -X GET http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1
+curl -i -X GET http://localhost:8080/api/v1
 
 # 2. List all rooms
-curl -i -X GET http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/rooms
+curl -i -X GET http://localhost:8080/api/v1/rooms
 
 # 3. Create a new room
-curl -i -X POST http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/rooms \
+curl -i -X POST http://localhost:8080/api/v1/rooms \
   -H "Content-Type: application/json" \
   -d '{"id":"RM-D401","name":"Design Studio","capacity":35}'
 
 # 4. Get a specific room
-curl -i -X GET http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/rooms/RM-A101
+curl -i -X GET http://localhost:8080/api/v1/rooms/RM-A101
 
 # 5. Create a sensor linked to an existing room
-curl -i -X POST http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/sensors \
+curl -i -X POST http://localhost:8080/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{"id":"SNR-HUM-01","type":"Humidity","status":"ACTIVE","currentValue":0,"roomId":"RM-D401"}'
 
 # 6. Filter sensors by type
-curl -i -X GET "http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/sensors?type=Temperature"
+curl -i -X GET "http://localhost:8080/api/v1/sensors?type=Temperature"
 
 # 7. Post a reading to a sensor
-curl -i -X POST http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/sensors/SNR-TMP-01/readings \
+curl -i -X POST http://localhost:8080/api/v1/sensors/SNR-TMP-01/readings \
   -H "Content-Type: application/json" \
   -d '{"value":23.7}'
 
 # 8. Get reading history for a sensor
-curl -i -X GET http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/sensors/SNR-TMP-01/readings
+curl -i -X GET http://localhost:8080/api/v1/sensors/SNR-TMP-01/readings
 
 # 9. Delete a room (will fail with 409 if sensors are assigned)
-curl -i -X DELETE http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/rooms/RM-A101
+curl -i -X DELETE http://localhost:8080/api/v1/rooms/RM-A101
 
 # 10. Trigger global 500 error (safety net demo)
-curl -i -X GET http://localhost:8080/Coursework-1.0-SNAPSHOT/api/v1/debug/error
+curl -i -X GET http://localhost:8080/api/v1/debug/error
 ```
 
 ---
